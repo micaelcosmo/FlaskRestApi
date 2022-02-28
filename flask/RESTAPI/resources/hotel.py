@@ -38,7 +38,24 @@ class Hotel(Resource):
         return {'message': 'Hotel not found.'}, 404  # not found
 
     def post(self, hotel_id):
-        pass
+        argumentos = reqparse.RequestParser()
+        argumentos.add_argument('nome')
+        argumentos.add_argument('estrelas')
+        argumentos.add_argument('diaria')
+        argumentos.add_argument('cidade')
+
+        dados = argumentos.parse_args()
+
+        novo_hotel = {
+            'hotel_id': hotel_id,
+            'nome': dados['nome'],
+            'estrelas': dados['estrelas'],
+            'diaria': dados['diaria'],
+            'cidade': dados['cidade']
+        }
+
+        hoteis.append(novo_hotel)
+        return novo_hotel, 200
 
     def put(self, hotel_id):
         pass
