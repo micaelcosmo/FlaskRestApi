@@ -33,6 +33,14 @@ class HotelModel:
         self.diaria = diaria
         self.cidade = cidade
 
+    def jason(self):
+        return {
+            'hotel_id': self.hotel_id,
+            'nome': self.nome,
+            'estrelas': self.estrelas
+            'diaria': self.diaria,
+            'cidade': self.cidade
+        }
 
 class Hoteis(Resource):
     def get(self):
