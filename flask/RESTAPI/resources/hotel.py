@@ -64,7 +64,15 @@ class Hotel(Resource):
         return novo_hotel, 200
 
     def put(self, hotel_id):
-        pass
+        dados = Hotel.argumentos.parse_args()
+        novo_hotel = {'hotel_id': hotel_id, **dados}
+        hotel = Hotel.find_hotel(hotel_id)
+        if hotel:
+            hotel.update(novo_hotel)
+            return novo_hotel, 200
+        hoteis.append(novo_hotel)
+        return novo_hotel, 201  # created
+
 
     def delete(self, hotel_id):
         pass
