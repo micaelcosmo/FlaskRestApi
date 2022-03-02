@@ -51,15 +51,7 @@ class Hotel(Resource):
 
     def post(self, hotel_id):
         dados = Hotel.argumentos.parse_args()
-
-        novo_hotel = {
-            'hotel_id': hotel_id,
-            'nome': dados['nome'],
-            'estrelas': dados['estrelas'],
-            'diaria': dados['diaria'],
-            'cidade': dados['cidade']
-        }
-
+        novo_hotel = {'hotel_id': hotel_id, **dados}
         hoteis.append(novo_hotel)
         return novo_hotel, 200
 
