@@ -37,7 +37,7 @@ class HotelModel:
         return {
             'hotel_id': self.hotel_id,
             'nome': self.nome,
-            'estrelas': self.estrelas
+            'estrelas': self.estrelas,
             'diaria': self.diaria,
             'cidade': self.cidade
         }
