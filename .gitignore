@@ -2,3 +2,4 @@ flask/RESTAPI/resources/__init__.py
 flask/RESTAPI/resources/__pycache__/
 flask/RESTAPI/models/__init__.py
 flask/RESTAPI/models/__pycache__/
+flask/RESTAPI/banco.db
