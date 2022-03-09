@@ -1,5 +1,12 @@
 from flask_restful import Resource, reqparse
 from models.usuario import UserModel
+from flask_jwt_extended import create_access_token
+from hmac import compare_digest
+
+
+atributos = reqparse.RequestParser()
+atributos.add_argument('login', type=str, required=True, help="The field 'login' cannot be left blank")
+atributos.add_argument('senha', type=str, required=True, help="The field 'senha' cannot be left blank")
 
 
 class User(Resource):
@@ -24,9 +31,6 @@ class User(Resource):
 class UserRegister(Resource):
     #  /cadastro/
     def post(self):
-        atributos = reqparse.RequestParser()
-        atributos.add_argument('login', type=str, required=True, help="The field 'login' cannot be left blank")
-        atributos.add_argument('senha', type=str, required=True, help="The field 'senha' cannot be left blank")
         dados = atributos.parse_args()
 
         if UserModel.find_by_login(dados['login']):
