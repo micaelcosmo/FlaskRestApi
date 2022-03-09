@@ -39,3 +39,17 @@ class UserRegister(Resource):
         user = UserModel(**dados)
         user.save_user()
         return {'message': 'User created successfully'}, 201
+
+
+class UserLogin(Resource):
+
+    @classmethod
+    def post(cls):
+        dados = atributos.parse_args()
+
+        user = UserModel.find_by_login(dados['login'])
+
+        if user and compare_digest(user.senha, dados['senha']):
+            token_de_acesso = create_access_token(identity=user.user_id)
+            return {'access_token': token_de_acesso}, 200
+        return {'message': 'The username or password is incorrect.'}, 401
