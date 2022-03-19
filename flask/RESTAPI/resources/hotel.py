@@ -3,8 +3,21 @@ from models.hotel import HotelModel
 from flask_jwt_extended import jwt_required
 
 
+# path /hoteis?cidade=Rio de Janeiro&esterlas_min=4&diaria_max=400
+path_params = reqparse.RequestParser()
+path_params.add_argument('cidade', type=str)
+path_params.add_argument('estrelas_min', type=float)
+path_params.add_argument('estrelas_max', type=float)
+path_params.add_argument('diaria_min', type=float)
+path_params.add_argument('diaria_max', type=float)
+path_params.add_argument('limit', type=float)
+path_params.add_argument('offset', type=float)
+
+
 class Hoteis(Resource):
     def get(self):
+
+        dados = path_params.parse_args()
         return {'hoteis': [hotel.json() for hotel in HotelModel.query.all()]}
 
 
