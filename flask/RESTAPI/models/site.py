@@ -6,7 +6,7 @@ class SiteModel(banco.Model):
 
     site_id = banco.Column(banco.Integer, primary_key=True)
     url = banco.Column(banco.String(40))
-    hoteis = banco.releationship('HotelModel')  # Lista de objetos hoteis
+    hoteis = banco.relationship('HotelModel')  # Lista de objetos hoteis
 
     def __init__(self, url):
         self.url = url
@@ -19,7 +19,7 @@ class SiteModel(banco.Model):
         }
 
     @classmethod
-    def find_hotel(cls, url):
+    def find_site(cls, url):
         site = cls.query.filter_by(url=url).first()
         if site:
             return site

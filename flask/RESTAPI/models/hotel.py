@@ -26,7 +26,7 @@ class HotelModel(banco.Model):
             'nome': self.nome,
             'estrelas': self.estrelas,
             'diaria': self.diaria,
-            'cidade': self.cidade
+            'cidade': self.cidade,
             'site_id': self.site_id
         }
 
