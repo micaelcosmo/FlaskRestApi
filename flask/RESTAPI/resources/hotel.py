@@ -46,11 +46,12 @@ class Hoteis(Resource):
 
 
 class Hotel(Resource):
-    argumentos = reqparse.RequestParser()
-    argumentos.add_argument('nome', type=str, required=True, help="The field 'nome' cannot be left blank.")
-    argumentos.add_argument('estrelas', type=float, required=True, help="The field 'estrelas' cannot be left blank.")
-    argumentos.add_argument('diaria')
-    argumentos.add_argument('cidade')
+    atributos = reqparse.RequestParser()
+    atributos.add_argument('nome', type=str, required=True, help="The field 'nome' cannot be left blank.")
+    atributos.add_argument('estrelas', type=float, required=True, help="The field 'estrelas' cannot be left blank.")
+    atributos.add_argument('diaria')
+    atributos.add_argument('cidade')
+    atributos.add_argument('site_id', type=int, required=True, help="Every hotel need to be linked with a site.")
 
     def get(self, hotel_id):
         hotel = HotelModel.find_hotel(hotel_id)
@@ -63,7 +64,7 @@ class Hotel(Resource):
         if HotelModel.find_hotel(hotel_id):
             return {"message": "Hotel id '{}' already exists.".format(hotel_id)}, 400  # Bad Request
 
-        dados = Hotel.argumentos.parse_args()
+        dados = Hotel.atributos.parse_args()
         hotel = HotelModel(hotel_id, **dados)
         try:
             hotel.save_hotel()
@@ -73,7 +74,7 @@ class Hotel(Resource):
 
     @jwt_required()
     def put(self, hotel_id):
-        dados = Hotel.argumentos.parse_args()
+        dados = Hotel.atributos.parse_args()
         hotel_encontrado = HotelModel.find_hotel(hotel_id)
         if hotel_encontrado:
             hotel_encontrado.update_hotel(**dados)
