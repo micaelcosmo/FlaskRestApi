@@ -12,7 +12,7 @@ class HotelModel(banco.Model):
     site_id = banco.Column(banco.Integer, banco.ForeignKey('sites.site_id'))
     # site = banco.relationship('SiteModel')
 
-    def __init__(self, hotel_id, nome, estrelas, diaria, cidade):
+    def __init__(self, hotel_id, nome, estrelas, diaria, cidade, site_id):
         self.hotel_id = hotel_id
         self.nome = nome
         self.estrelas = estrelas
