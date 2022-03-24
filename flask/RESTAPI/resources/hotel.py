@@ -39,7 +39,8 @@ class Hoteis(Resource):
                 'nome': linha[1],
                 'estrelas': linha[2],
                 'diaria': linha[3],
-                'cidade': linha[4]
+                'cidade': linha[4],
+                'site_id': linha[5]
             })
 
         return {'hoteis': hoteis}
