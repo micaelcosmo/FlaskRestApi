@@ -6,7 +6,7 @@ class SiteModel(banco.Model):
 
     site_id = banco.Column(banco.Integer, primary_key=True)
     url = banco.Column(banco.String(40))
-    hoteis = banco.relationship('HotelModel')  # Lista de objetos hoteis
+    hoteis = banco.relationship('HotelModel')
 
     def __init__(self, url):
         self.url = url
@@ -30,5 +30,6 @@ class SiteModel(banco.Model):
         banco.session.commit()
 
     def delete_site(self):
+        [hotel.delete_hotel() for hotel in self.hoteis]
         banco.session.delete(self)
         banco.session.commit()
