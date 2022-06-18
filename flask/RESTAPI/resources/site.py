@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from RESTAPI.models.site import SiteModel
+from models.site import SiteModel
 
 
 class Sites(Resource):

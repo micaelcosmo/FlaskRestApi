@@ -1,4 +1,4 @@
-from RESTAPI.sql_alchemy import banco
+from sql_alchemy import banco
 
 
 class UserModel(banco.Model):

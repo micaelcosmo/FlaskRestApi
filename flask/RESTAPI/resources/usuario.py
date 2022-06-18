@@ -1,8 +1,8 @@
 from flask_restful import Resource, reqparse
-from RESTAPI.models.usuario import UserModel
+from models.usuario import UserModel
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt
 from hmac import compare_digest
-from RESTAPI.blacklist import BLACKLIST
+from blacklist import BLACKLIST
 
 
 atributos = reqparse.RequestParser()
