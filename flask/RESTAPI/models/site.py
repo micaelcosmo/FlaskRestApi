@@ -1,4 +1,4 @@
-from sql_alchemy import banco
+from RESTAPI.sql_alchemy import banco
 
 
 class SiteModel(banco.Model):
