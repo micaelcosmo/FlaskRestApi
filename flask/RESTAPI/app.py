@@ -21,12 +21,12 @@ def cria_banco():
 
 
 @jwt.token_in_blocklist_loader
-def verifica_blacklist(self, token):
+def verifica_blacklist(token):
     return token['jti'] in BLACKLIST
 
 
 @jwt.revoked_token_loader
-def token_de_acesso_invalidado(jwt_header, jwt_payload):
+def token_de_acesso_invalidado():
     return jsonify({'message': 'You have been logged out.'})
 
 
